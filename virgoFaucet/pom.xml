@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>virgoFaucet</groupId>
+  <artifactId>virgoFaucet</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>11</release>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+<repositories>
+    <repository>
+        <id>virgo-releases</id>
+        <name>Virgo Release Repository</name>
+        <url>http://54.190.55.105/nexus/content/repositories/releases/</url>
+    </repository>
+</repositories>
+  <dependencies>
+		  <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+	<dependency>
+	    <groupId>org.bouncycastle</groupId>
+	    <artifactId>bcprov-jdk15on</artifactId>
+	    <version>1.68</version>
+	</dependency>
+  	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>20180813</version>
+	</dependency>
+	<dependency>
+	  <groupId>io.virgo</groupId>
+	  <artifactId>virgoCryptoLib</artifactId>
+	  <version>0.0.5</version>
+	</dependency>
+  	<dependency>
+	  <groupId>io.virgo</groupId>
+	  <artifactId>virgoAPI</artifactId>
+	  <version>0.0.7q</version>
+	</dependency>
+  </dependencies>
+</project>

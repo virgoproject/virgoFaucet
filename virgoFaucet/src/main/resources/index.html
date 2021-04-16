@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta charset="utf-8">
+        <link rel="icon" href="favicon.ico">
+        <link rel="icon" type="image/png" href="favicon.png" />
+        <title>Testnet faucet - Virgo</title>
+        <link href="style.css" rel="stylesheet">
+    </head>
+  <body class="displayBlk">
+    <div class="d-flex h-100 text-center text-black bg-light backGroundColor">
+        <div class="form">
+            <img class="mb-4" src="logo.png" alt="Virgo" width="500">
+            <p>{actionMessage}</p>
+            <form>
+              <input type="text" id="TextVGO" name="address" class="form-control vgoBoxColor" placeholder="Your Virgo address" required="" autofocus="">
+              <input type="submit" class="btn buttonSend" value="Claim VGO">
+            </form>
+            <div>
+                <p class="txtSize">{vgoPerSend}VGO sent per request</p>
+                <p>Faucet balance: {faucetBalance} VGO</p>
+                <p class="adresseMargin">{faucetAddress}</p>
+                <p style="color: grey">This faucet is working on the Eagle Testnet.</p>
+            </div>
+            <p class="mt-5 mb-3 text-muted">© 2020-2021</p>
+        </div>
+   </div>
+</body>
+</html>

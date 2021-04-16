@@ -1,0 +1,101 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.backGroundColor {
+    background-color: #d9d9d9 !important;
+}
+
+.form {
+  width: 100%;
+  max-width: 650px;
+  padding: 15px;
+  margin: auto;
+}
+.form .checkbox {
+  font-weight: 400;
+}
+.form .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form .form-control:focus {
+  z-index: 2;
+}
+.form input[type="text"] {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.boxcolor:focus, input:focus, input[type]:focus, .uneditable-input:focus {    
+  box-shadow: 0 1px 1px #644696 inset, 0 0 8px #644696;
+  outline: 0 none;
+  border-color: #644696;
+}
+
+.colorBlk {
+color: black;
+}
+
+.vgoBoxColor {
+    border-radius: 25px 25px !important;
+    color: #644696;
+}
+
+.buttonSend {
+    background-color: #644696; 
+    border-color: #644696;
+    color: #fff;
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+.buttonSend:hover{
+      box-shadow: 0 1px 1px #644696 inset, 0 0 8px #644696;
+      outline: 0 none;
+      color: #fff;
+}
+
+.buttonSend:active{
+      background-color: #A371B0;
+      border-color: #A371B0;
+      box-shadow: 0 1px 1px #A371B0 inset, 0 0 8px #644696;
+      outline: 0 none;
+      color: #fff;
+}
+
+.buttonSend:focus{
+      outline: 0 none;
+}
+
+.txtSize {
+font-size: 2rem;
+}
+
+.adresseMargin {
+    margin-top: 40px;
+    font-weight: bold;
+}
+
+.displayBlk {
+  display: block !important;
+}
+
+.textSuccess {
+  color: green;
+}
+
+.textError {
+  color: red;
+}
