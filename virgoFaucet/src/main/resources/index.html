@@ -6,6 +6,7 @@
         <link rel="icon" type="image/png" href="favicon.png" />
         <title>Testnet faucet - Virgo</title>
         <link href="style.css" rel="stylesheet">
+        {hCaptchaJS}
     </head>
   <body class="displayBlk">
     <div class="d-flex h-100 text-center text-black bg-light backGroundColor">
@@ -14,13 +15,14 @@
             <p>{actionMessage}</p>
             <form>
               <input type="text" id="TextVGO" name="address" class="form-control vgoBoxColor" placeholder="Your Virgo address" required="" autofocus="">
-              <input type="submit" class="btn buttonSend" value="Claim VGO">
+              {hCaptchaBox}
+              <input type="submit" class="btn buttonSend" value="Claim tVGO">
             </form>
             <div>
                 <p class="txtSize">{vgoPerSend}VGO sent per request</p>
                 <p>Faucet balance: {faucetBalance} VGO</p>
                 <p class="adresseMargin">{faucetAddress}</p>
-                <p style="color: grey">This faucet is working on the Eagle Testnet.</p>
+                <p style="color: grey">This faucet is working on the Testnet.</p>
             </div>
             <p class="mt-5 mb-3 text-muted">© 2020-2021</p>
         </div>

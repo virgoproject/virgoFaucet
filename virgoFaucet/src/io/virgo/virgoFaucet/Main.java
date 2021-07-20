@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,8 +34,13 @@ public class Main {
 	
 	public static PaymentHandler handler;
 	
+	private static ArrayList<String> providersList = new ArrayList<String>(Arrays.asList("http://us.eagle.virgo.network:8000/", "http://eu.eagle.virgo.network:8000/"));
+	
+	public static String hCaptchaSecretKey = "";
+	public static String hCaptchaSitekey = "";
+	
 	public static void main(String[] args) throws IOException {
-		
+				
 		try {
 			setup();
 		} catch(IOException e) {
@@ -42,7 +50,8 @@ public class Main {
 		address = Converter.Addressify(ECDSA.getPublicKey(privateKey), VirgoAPI.ADDR_IDENTIFIER);
 		
 		api = new VirgoAPI.Builder().build();
-		api.addProvider(new URL("http://35.164.199.2:8000/"));
+		api.addProvider(new URL("http://us.eagle.virgo.network:8000/"));
+		api.addProvider(new URL("http://eu.eagle.virgo.network:8000/"));
 		
 		new Server();
 		
@@ -87,7 +96,12 @@ public class Main {
 			privateKey = Converter.hexToBytes(config.getString("privateKey"));
 			rewardPerPayment = config.getInt("rewardPerPayment");
 			paymentsPerMinute = config.getInt("paymentsPerMinute");
+			hCaptchaSecretKey = config.getString("hCaptchaSecretKey");
+			hCaptchaSitekey = config.getString("hCaptchaSitekey");
 			
+			JSONArray providers = config.getJSONArray("providers");
+			for(int i = 0; i< providers.length(); i++)
+				providersList.add(providers.getString(i));
 			
 		}catch(JSONException|IllegalArgumentException e) {
 			writeBaseConfig(configFile);
@@ -101,6 +115,11 @@ public class Main {
 		baseConfig.put("privateKey", "");
 		baseConfig.put("rewardPerPayment", Main.rewardPerPayment);
 		baseConfig.put("paymentsPerMinute", Main.paymentsPerMinute);
+		baseConfig.put("hCaptchaSecretKey", Main.hCaptchaSecretKey);
+		baseConfig.put("hCaptchaSitekey", Main.hCaptchaSitekey);
+		
+		JSONArray providers = new JSONArray(providersList);
+		baseConfig.put("providers", providers);
 		
 		Files.writeString(configFile.toPath(), baseConfig.toString());
 		System.out.println("config.json created, please edit it to provide faucet's wallet private key.");
