@@ -12,6 +12,7 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.concurrent.Executors;
 
 import org.json.JSONObject;
 
@@ -72,21 +73,20 @@ public class Server {
         				
         				if(hCaptchaEnabled) {
         					if(params.containsKey("h-captcha-response")) {
-        						
-        						System.out.println(params.get("h-captcha-response"));        						
-	    						var sb = new StringBuilder();
-	    						sb.append("response=");
-	    						sb.append(params.get("h-captcha-response"));
-	    						sb.append("&secret=");
-	    						sb.append(Main.hCaptchaSecretKey);
-	
-	    						HttpRequest captchaVerifReq = HttpRequest.newBuilder()
-						          .uri(URI.create("https://hcaptcha.com/siteverify"))
-						          .header("Content-Type", "application/x-www-form-urlencoded")
-						          .timeout(Duration.ofSeconds(10))
-						          .POST(BodyPublishers.ofString(sb.toString())).build();
-	
 								try {
+									
+		    						var sb = new StringBuilder();
+		    						sb.append("response=");
+		    						sb.append(params.get("h-captcha-response"));
+		    						sb.append("&secret=");
+		    						sb.append(Main.hCaptchaSecretKey);
+		
+		    						HttpRequest captchaVerifReq = HttpRequest.newBuilder()
+							          .uri(URI.create("https://hcaptcha.com/siteverify"))
+							          .header("Content-Type", "application/x-www-form-urlencoded")
+							          .timeout(Duration.ofSeconds(10))
+							          .POST(BodyPublishers.ofString(sb.toString())).build();
+
 									HttpResponse<String> verifResp = httpClient.send(captchaVerifReq,
 									  BodyHandlers.ofString());
 																		
@@ -137,13 +137,16 @@ public class Server {
                 OutputStream output = exchange.getResponseBody();
                 output.write(response);
                 output.flush();
+                output.close();
         	} else {
     			exchange.sendResponseHeaders(404, 0);
         	}
-
+        	
+    		resource.close();
             exchange.close();
 		}));
 		
+		server.setExecutor(Executors.newCachedThreadPool());
 		server.start();
 		
 	}

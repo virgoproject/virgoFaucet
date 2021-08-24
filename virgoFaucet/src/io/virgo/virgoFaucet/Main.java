@@ -34,7 +34,7 @@ public class Main {
 	
 	public static PaymentHandler handler;
 	
-	private static ArrayList<String> providersList = new ArrayList<String>(Arrays.asList("http://us.eagle.virgo.network:8000/", "http://eu.eagle.virgo.network:8000/"));
+	private static ArrayList<String> providersList = new ArrayList<String>(Arrays.asList("http://us.eagle.virgo.network:8000/", "http://eu.eagle.virgo.network:8000/", "http://ap.eagle.virgo.network:8000/"));
 	
 	public static String hCaptchaSecretKey = "";
 	public static String hCaptchaSitekey = "";
@@ -50,8 +50,9 @@ public class Main {
 		address = Converter.Addressify(ECDSA.getPublicKey(privateKey), VirgoAPI.ADDR_IDENTIFIER);
 		
 		api = new VirgoAPI.Builder().build();
-		api.addProvider(new URL("http://us.eagle.virgo.network:8000/"));
-		api.addProvider(new URL("http://eu.eagle.virgo.network:8000/"));
+		
+		for(String provider : providersList)
+			api.addProvider(new URL(provider));
 		
 		new Server();
 		
