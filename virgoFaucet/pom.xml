@@ -19,7 +19,7 @@
     <repository>
         <id>virgo-releases</id>
         <name>Virgo Release Repository</name>
-        <url>http://54.190.55.105/nexus/content/repositories/releases/</url>
+        <url>http://34.216.175.160/nexus/content/repositories/releases/</url>
     </repository>
 </repositories>
   <dependencies>
@@ -43,7 +43,7 @@
   	<dependency>
 	  <groupId>io.virgo</groupId>
 	  <artifactId>virgoAPI</artifactId>
-	  <version>0.0.8i</version>
+	  <version>0.0.9d</version>
 	</dependency>
   </dependencies>
 </project>
