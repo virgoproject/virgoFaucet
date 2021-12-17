@@ -25,6 +25,8 @@ public class Main {
 	
 	public static int rewardPerPayment = 500000000;
 	
+	public static long timeBetweenClaims = 60 * 60000;
+	
 	public static byte[] privateKey;
 	public static String address;
 	
@@ -34,7 +36,7 @@ public class Main {
 	
 	public static PaymentHandler handler;
 	
-	private static ArrayList<String> providersList = new ArrayList<String>(Arrays.asList("http://us.eagle.virgo.network:8000/", "http://eu.eagle.virgo.network:8000/", "http://ap.eagle.virgo.network:8000/"));
+	private static ArrayList<String> providersList = new ArrayList<String>(Arrays.asList("https://us.eagle.virgo.network:8000/", "https://ap.eagle.virgo.network:8000/", "https://eu.eagle.virgo.network:8000/"));
 	
 	public static String hCaptchaSecretKey = "";
 	public static String hCaptchaSitekey = "";
@@ -72,7 +74,7 @@ public class Main {
 				faucetBalance = resp.getBalance(address).getFinalBalance();
 			}
 			
-		}, 10000l, 10000l);
+		}, 10000l, 1000l);
 		
 	}
 	

@@ -2,6 +2,8 @@ package io.virgo.virgoFaucet;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -18,6 +20,7 @@ public class PaymentHandler implements Runnable {
 	
 	private LinkedBlockingQueue<PaymentRequest> queue = new LinkedBlockingQueue<PaymentRequest>();
 	private List<String> addressesInQueue = Collections.synchronizedList(new ArrayList<String>());
+	private HashMap<String, Long> locks = new HashMap<String, Long>();
 	
 	public PaymentHandler() {
 		
@@ -61,8 +64,12 @@ public class PaymentHandler implements Runnable {
 		if(!Utils.validateAddress(request.getAddress(), VirgoAPI.ADDR_IDENTIFIER))
 			return 2;
 		
+		if(locks.containsKey(request.getAddress()) && locks.get(request.getAddress()) > System.currentTimeMillis())
+			return 3;
+		
 		queue.add(request);
 		addressesInQueue.add(request.getAddress());
+		locks.put(request.getAddress(), System.currentTimeMillis()+Main.timeBetweenClaims);
 		
 		return 0;
 	}

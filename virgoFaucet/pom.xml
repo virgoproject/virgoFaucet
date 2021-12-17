@@ -43,7 +43,7 @@
   	<dependency>
 	  <groupId>io.virgo</groupId>
 	  <artifactId>virgoAPI</artifactId>
-	  <version>0.0.9d</version>
+	  <version>0.0.9f</version>
 	</dependency>
   </dependencies>
 </project>

@@ -125,6 +125,10 @@ public class Server {
 	        				case 2:
 	        					actionMessage = "<span class='textError'>Invalid address !</span>";
 	        					break;
+	        					
+	        				case 3:
+	        					actionMessage = "<span class='textError'>You must wait 60 minutes between claims!</span>";
+	        					break;
 	        				}
         				
         			}
